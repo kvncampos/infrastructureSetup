@@ -1,0 +1,8 @@
+FROM haproxy:alpine
+
+# Copy the HAProxy configuration file
+COPY haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
+
+EXPOSE 60000-60001
+
+CMD ["haproxy", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]

@@ -1,0 +1,76 @@
+version: "3.9"
+
+services:
+  haproxy:
+    build:
+      context: ./infrastructure/load_balancer
+      dockerfile: Dockerfile.prod
+    container_name: haproxy
+    ports:
+      - "60000-65000:60000-65000"  # Map port range for load balancer
+    networks:
+      - expensify_network
+    depends_on:
+      - web-a
+      - web-b
+    environment:
+      - BALANCER_MODE=production  # Optional: pass custom environment variables for prod
+    restart: always
+
+  web-a:
+    build:
+      context: ./infrastructure/web_server
+      dockerfile: Dockerfile.prod
+    container_name: web-a
+    ports:
+      - "80"  # Web-a service listens on port 80 internally
+    networks:
+      - expensify_network
+    environment:
+      APP_ENV: production  # Optional: pass environment-specific variables
+      MESSAGE: "Web Server: B"
+    restart: always
+
+  web-b:
+    build:
+      context: ./infrastructure/web_server
+      dockerfile: Dockerfile.prod
+    container_name: web-b
+    ports:
+      - "80"  # Web-b service listens on port 80 internally
+    networks:
+      - expensify_network
+    environment:
+      APP_ENV: production
+      MESSAGE: "Web Server: A"
+    restart: always
+
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: nagios
+    ports:
+      - "8080:80"  # Expose Nagios web interface on port 8080
+    environment:
+      - NAGIOS_TIMEZONE=UTC
+    volumes:
+      - ./infrastructure/nagios/etc:/opt/nagios/etc/          # Mount Nagios etc
+      - ./infrastructure/nagios/libexec:/opt/nagios/libexec/  # Mount Nagios libexec
+    restart: always
+    networks:
+      - expensify_network
+
+  mkdocs:
+    container_name: mkdocs
+    image: squidfunk/mkdocs-material
+    ports:
+      - "8000:8000"  # MkDocs development server port
+    volumes:
+      - ./mkdocs:/docs
+    restart: always
+    networks:
+      - expensify_network
+
+networks:
+  expensify_network:
+    driver: bridge
+    name: expensify_network

@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "infrastructure"
+version = "0.1.0"
+description = ""
+authors = ["kvncampos <kvnelpdfw@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+docker = "^7.1.0"
+flask = "^3.1.0"
+python-dotenv = "^1.0.1"
+mkdocs-material = "^9.5.49"
+gunicorn = "^23.0.0"
+ruff = "^0.8.4"
+black = "^24.10.0"
+pytest-cov = "^6.0.0"
+pytest = "^8.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+lint.extend-select = ["I", "N"]
+

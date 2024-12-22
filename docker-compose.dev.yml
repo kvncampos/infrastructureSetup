@@ -1,0 +1,64 @@
+services:
+  haproxy:
+    build:
+      context: ./infrastructure/load_balancer
+      dockerfile: Dockerfile.dev
+    container_name: haproxy
+    ports:
+      - "60000-60001:60000-60001"  # Map port range for testing
+    networks:
+      - expensify_network
+    depends_on:
+      - web-a
+      - web-b
+
+  web-a:
+    build:
+      context: ./infrastructure/web_server
+      dockerfile: Dockerfile.dev
+    container_name: web-a
+    environment:
+      MESSAGE: "Web Server: A"
+    ports:
+      - "5001:5001"  # Bind web-a's port 80 inside the container to 5001 on the host
+    networks:
+      - expensify_network
+
+  web-b:
+    build:
+      context: ./infrastructure/web_server
+      dockerfile: Dockerfile.dev
+    container_name: web-b
+    environment:
+      MESSAGE: "Web Server: B"
+    ports:
+      - "5002:5002"  # Bind web-b's port 80 inside the container to 5002 on the host
+    networks:
+      - expensify_network
+
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: nagios
+    ports:
+      - "8080:80"  # Expose Nagios web interface on port 8080
+    environment:
+      - NAGIOS_TIMEZONE=UTC  # Set timezone
+    volumes:
+      - ./infrastructure/nagios/etc:/opt/nagios/etc/          # Mount Nagios etc
+      - ./infrastructure/nagios/libexec:/opt/nagios/libexec/  # Mount Nagios libexec
+    restart: always
+    networks:
+      - expensify_network
+
+  mkdocs:
+    container_name: mkdocs
+    image: squidfunk/mkdocs-material
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mkdocs:/docs
+
+networks:
+  expensify_network:
+    driver: bridge
+    name: expensify_network
