@@ -44,6 +44,6 @@ This documentation includes the following sections:
 
 ## Get Started
 
-To dive deeper, visit the [Infrastructure Design](index.md) section or explore [About](about.md).
+To dive deeper, visit the [Getting Started](getting_started.md) section or explore [About](about.md).
 
 Visit the [Github Repo](https://github.com/kvncampos/infrastructureSetup){:target="_blank"}

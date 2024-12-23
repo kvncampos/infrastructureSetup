@@ -19,6 +19,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: web-a
     environment:
+      PORT: 5001
       MESSAGE: "Web Server: A"
     ports:
       - "5001:5001"
@@ -31,6 +32,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: web-b
     environment:
+      PORT: 5002
       MESSAGE: "Web Server: B"
     ports:
       - "5002:5002"

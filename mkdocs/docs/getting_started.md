@@ -52,7 +52,7 @@ tasks.py
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/kvncampos/infrastructureSetup
 ```
 
 ### 2. Poetry Init
@@ -81,6 +81,13 @@ NAGIOS_TIMEZONE=UTC
 ```bash
 invoke up
 ```
+
+??? info "Quick Access to Containers"
+    - [MKDocs](http://localhost:8000)
+    - [Web Server A](http://localhost:5001)
+    - [Web Server B](http://localhost:5002)
+    - [HAProxy LB](http://localhost:6000)
+    - [Nagios](http://localhost:8080)
 
 ## Troubleshooting
 

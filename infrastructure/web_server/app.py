@@ -8,11 +8,10 @@ app = Flask(__name__)
 # Load environment variables from .env
 load_dotenv()
 
-# Get WEB_ENV from environment
+# Fetch environment variables
 web_env = os.getenv("ENV", "development")
-
-# Fetch message from environment variables
 message = os.getenv("MESSAGE", "default")
+port = os.getenv("PORT")
 
 # Configure Flask based on the environment
 if web_env == "development":
@@ -41,4 +40,4 @@ if __name__ == "__main__":
     else:
         # Use Flask's development server
         print("Running in development mode...")
-        app.run(host="0.0.0.0", port=5001, debug=app.config["DEBUG"])
+        app.run(host="0.0.0.0", port=port, debug=app.config["DEBUG"])
