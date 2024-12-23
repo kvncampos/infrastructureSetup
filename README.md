@@ -89,3 +89,7 @@ $ invoke lint_all
 # Start Docker services
 $ invoke up
 ```
+
+## :file_folder: Documentation
+
+Using MKDocs documentation for this project can be found in localhost:8000

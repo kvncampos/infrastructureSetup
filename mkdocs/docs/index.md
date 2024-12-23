@@ -17,6 +17,24 @@ Here's an overview of the infrastructure:
 Infrastructure Design
 ///
 
+## Technology Used
+
+<div class="grid cards" markdown>
+
+- :fontawesome-brands-python: [**Flask/Python**](webserver.md)
+  - Flask, a lightweight Python web framework, enables rapid development of scalable web applications.
+
+- :fontawesome-brands-docker: [**Docker**](docker.md)
+  - Docker simplifies containerization, ensuring consistent environments across development and production.
+
+- :fontawesome-solid-network-wired: [**HAProxy**](loadbalancer.md)
+  - HAProxy, a reliable open-source load balancer, optimizes traffic distribution and enhances scalability.
+
+- :fontawesome-solid-chart-bar: [**Nagios**](nagios.md)
+  - Nagios offers powerful monitoring capabilities, ensuring system health and uptime with detailed alerts.
+
+</div>
+
 ## Documentation Overview
 
 This documentation includes the following sections:
@@ -28,4 +46,4 @@ This documentation includes the following sections:
 
 To dive deeper, visit the [Infrastructure Design](index.md) section or explore [About](about.md).
 
-Visit the Github Repo at INSERT REPO HERE
+Visit the [Github Repo](https://github.com/kvncampos/infrastructureSetup){:target="_blank"}
