@@ -40,6 +40,8 @@
 
 InfrastructureProject is a robust solution designed to streamline infrastructure automation, testing, and deployment. It leverages modern tools like Flask, Docker, Invoke, Poetry, Nagios, and HAProxy to create a seamless environment for development and operations.
 
+![High-Level Design Overview](mkdocs/docs/assets/overview.jpg){ loading=lazy }
+
 ## :sparkles: Features
 
 :heavy_check_mark: Automated testing with Pytest;\
