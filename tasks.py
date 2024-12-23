@@ -150,10 +150,25 @@ def lint_html(ctx):
                 ctx.run(f"tidy -e {filepath}", warn=True)
 
 
-@task(pre=[check_python, lint_html])
-def lint_all(ctx):
-    """Run all linting tasks."""
-    print("All linting tasks completed!")
+@task
+def lint_yaml(ctx, fix=False):
+    """Lint and optionally format all YAML files recursively."""
+    print("Processing YAML files...")
+
+    # Find all .yml files recursively
+    for root, _, files in os.walk("."):
+        for file in files:
+            if file.endswith(".yml"):
+                filepath = os.path.join(root, file)
+                print(f"Linting {filepath}...")
+
+                # Lint the YAML file
+                ctx.run(f"yamllint {filepath}", warn=True)
+
+                # Optionally format the YAML file
+                if fix:
+                    print(f"Formatting {filepath}...")
+                    ctx.run(f"prettier --write {filepath}", warn=True)
 
 
 @task
@@ -161,3 +176,9 @@ def pytest(ctx, path="infrastructure/tests/"):
     """Run pytest on the specified test path (default: infrastructure/tests/)."""
     print(f"Running pytest in {path}...")
     ctx.run(f"pytest {path}", pty=True)
+
+
+@task(pre=[check_python, pytest])
+def checks(ctx):
+    """Run all linting tasks."""
+    print("All linting tasks completed!")

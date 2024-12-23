@@ -12,12 +12,15 @@ flask = "^3.1.0"
 python-dotenv = "^1.0.1"
 mkdocs-material = "^9.5.49"
 gunicorn = "^23.0.0"
+invoke = "^2.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+yamllint = "^1.35.1"
 ruff = "^0.8.4"
 black = "^24.10.0"
 pytest-cov = "^6.0.0"
 pytest = "^8.3.4"
-invoke = "^2.2.0"
-
 
 [build-system]
 requires = ["poetry-core"]

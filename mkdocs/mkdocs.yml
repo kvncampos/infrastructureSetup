@@ -1,4 +1,5 @@
-site_name: My Documentation
+---
+site_name: Project Documentation
 theme:
   name: material
   features:

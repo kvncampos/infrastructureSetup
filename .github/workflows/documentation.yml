@@ -26,5 +26,5 @@
             git config user.email "github-actions[bot]@users.noreply.github.com"
         - name: Deploy to GitHub Pages
           env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            MKDOCS_TOKEN: ${{ secrets.MKDOCS_TOKEN }}
           run: poetry run mkdocs gh-deploy --config-file mkdocs/mkdocs.yml --force

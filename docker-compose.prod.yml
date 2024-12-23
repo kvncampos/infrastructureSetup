@@ -1,3 +1,4 @@
+---
 version: "3.9"
 
 services:
@@ -23,11 +24,11 @@ services:
       dockerfile: Dockerfile.prod
     container_name: web-a
     ports:
-      - "80"  # Web-a service listens on port 80 internally
+      - "80"
     networks:
       - expensify_network
     environment:
-      APP_ENV: production  # Optional: pass environment-specific variables
+      APP_ENV: production
       MESSAGE: "Web Server: B"
     restart: always
 
@@ -37,7 +38,7 @@ services:
       dockerfile: Dockerfile.prod
     container_name: web-b
     ports:
-      - "80"  # Web-b service listens on port 80 internally
+      - "80"
     networks:
       - expensify_network
     environment:
@@ -49,12 +50,12 @@ services:
     image: jasonrivers/nagios:latest
     container_name: nagios
     ports:
-      - "8080:80"  # Expose Nagios web interface on port 8080
+      - "8080:80"
     environment:
       - NAGIOS_TIMEZONE=UTC
     volumes:
-      - ./infrastructure/nagios/etc:/opt/nagios/etc/          # Mount Nagios etc
-      - ./infrastructure/nagios/libexec:/opt/nagios/libexec/  # Mount Nagios libexec
+      - ./infrastructure/nagios/etc:/opt/nagios/etc/
+      - ./infrastructure/nagios/libexec:/opt/nagios/libexec/
     restart: always
     networks:
       - expensify_network
@@ -63,7 +64,7 @@ services:
     container_name: mkdocs
     image: squidfunk/mkdocs-material
     ports:
-      - "8000:8000"  # MkDocs development server port
+      - "8000:8000"
     volumes:
       - ./mkdocs:/docs
     restart: always

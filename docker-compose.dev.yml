@@ -1,3 +1,4 @@
+---
 services:
   haproxy:
     build:
@@ -5,7 +6,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: haproxy
     ports:
-      - "60000-60001:60000-60001"  # Map port range for testing
+      - "60000-60001:60000-60001"
     networks:
       - expensify_network
     depends_on:
@@ -20,7 +21,7 @@ services:
     environment:
       MESSAGE: "Web Server: A"
     ports:
-      - "5001:5001"  # Bind web-a's port 80 inside the container to 5001 on the host
+      - "5001:5001"
     networks:
       - expensify_network
 
@@ -32,7 +33,7 @@ services:
     environment:
       MESSAGE: "Web Server: B"
     ports:
-      - "5002:5002"  # Bind web-b's port 80 inside the container to 5002 on the host
+      - "5002:5002"
     networks:
       - expensify_network
 
@@ -40,12 +41,12 @@ services:
     image: jasonrivers/nagios:latest
     container_name: nagios
     ports:
-      - "8080:80"  # Expose Nagios web interface on port 8080
+      - "8080:80"
     environment:
-      - NAGIOS_TIMEZONE=UTC  # Set timezone
+      - NAGIOS_TIMEZONE=UTC
     volumes:
-      - ./infrastructure/nagios/etc:/opt/nagios/etc/          # Mount Nagios etc
-      - ./infrastructure/nagios/libexec:/opt/nagios/libexec/  # Mount Nagios libexec
+      - ./infrastructure/nagios/etc:/opt/nagios/etc/
+      - ./infrastructure/nagios/libexec:/opt/nagios/libexec/
     restart: always
     networks:
       - expensify_network
