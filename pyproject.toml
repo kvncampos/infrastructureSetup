@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "infrastructure"
 version = "0.1.0"
-description = ""
+description = "Simple project working with containers and different services."
 authors = ["kvncampos <kvnelpdfw@hotmail.com>"]
 readme = "README.md"
 
