@@ -1,5 +1,8 @@
 ---
 site_name: Project Documentation
+site_author: Kevin Campos
+repo_name: kvncampos/infrastructureSetup
+docs_dir: docs/
 theme:
   name: material
   features:

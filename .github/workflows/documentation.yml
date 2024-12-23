@@ -20,11 +20,8 @@
         - name: Install dependencies
           run: |
             poetry install
-        - name: Configure Git
-          run: |
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
+
         - name: Deploy to GitHub Pages
           env:
-            MKDOCS_TOKEN: ${{ secrets.MKDOCS_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: poetry run mkdocs gh-deploy --config-file mkdocs/mkdocs.yml --force
