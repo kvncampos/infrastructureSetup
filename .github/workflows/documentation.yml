@@ -29,5 +29,5 @@ jobs:
     - name: Deploy to GitHub Pages
       env:
         GITHUB_TOKEN: ${{ secrets.MKDOCS_TOKEN }}
-      run: mkdocs gh-deploy --config-file mkdocs/mkdocs.yml --force
+      run: poetry run mkdocs gh-deploy --config-file mkdocs/mkdocs.yml --force
 
