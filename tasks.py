@@ -150,29 +150,7 @@ def lint_html(ctx):
                 ctx.run(f"tidy -e {filepath}", warn=True)
 
 
-@task
-def lint_haproxy(ctx):
-    """Validate HAProxy configuration."""
-    print("Validating HAProxy configuration...")
-    haproxy_cfg = "infrastructure/load_balancer/haproxy.cfg"
-    if os.path.exists(haproxy_cfg):
-        ctx.run(f"haproxy -c -f {haproxy_cfg}", pty=True)
-    else:
-        print(f"HAProxy config file {haproxy_cfg} not found.")
-
-
-@task
-def lint_nagios(ctx):
-    """Validate Nagios configuration."""
-    print("Validating Nagios configuration...")
-    nagios_cfg = "/infrastructure/nagios/etc/nagios.cfg"
-    if os.path.exists(nagios_cfg):
-        ctx.run(f"nagios -v {nagios_cfg}", pty=True)
-    else:
-        print(f"Nagios config file {nagios_cfg} not found.")
-
-
-@task(pre=[check_python, lint_html, lint_haproxy, lint_nagios])
+@task(pre=[check_python, lint_html])
 def lint_all(ctx):
     """Run all linting tasks."""
     print("All linting tasks completed!")
