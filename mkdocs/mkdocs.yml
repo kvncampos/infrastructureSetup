@@ -18,6 +18,7 @@ nav:
       - Load Balancer: loadbalancer.md
       - Nagios: nagios.md
   - About: about.md
+  - Lessons Learned: lessons_learned.md
 
 markdown_extensions:
   - attr_list
