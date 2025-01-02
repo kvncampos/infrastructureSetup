@@ -29,6 +29,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - tables
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

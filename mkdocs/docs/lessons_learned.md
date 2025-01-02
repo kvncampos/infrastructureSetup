@@ -67,13 +67,24 @@ Opening the range `60000-65000` caused conflicts with Docker's networking stack,
         ```bash
         sudo netstat -tuln | grep 22
         ```
+4. **Run HAProxy in network_mode: host**:
+    - Using --network host vs. Port Binding
 
-4. **Restrict Traffic**:
-    - Limit large port ranges to internal traffic:
-        ```bash
-        sudo ufw allow from 192.168.1.0/24 to any port 60000:60010 proto tcp
-        ```
+    | Feature                           | Port Binding (-p)                          | --network host
+    | -----------                       | ------------------------------------       | --------------
+    | Performance                       | Slight NAT overhead for every request.     | No NAT, direct host networking.
+    | Configuration Simplicity          | Need to manage port mappings explicitly.   | No port mappings needed.
+    | Port Conflicts                    | Only mapped ports cause conflicts.         | All bound ports can conflict.
+    | Use Case                          | Fine for small ranges (e.g., 10 ports).	 | Better for large ranges (e.g., 5000).
 
+    - This is an alternative to using 'iptables'.
+         - Thus, network_mode: host achieves the same outcome as iptables but avoids the extra manual configuration.
+    ??? note "Things to Consider"
+        **Compatibility**: network_mode: host is supported only on Linux, not on macOS or Windows.
+
+        **Port Conflicts**: Ensure no other services on the host are using ports in the 60000-60010 range.
+
+        **Security**: Since the container shares the host's network stack, take additional precautions (e.g., firewalls) to secure the exposed ports.
 ---
 
 ## General Lessons for Future Deployments
