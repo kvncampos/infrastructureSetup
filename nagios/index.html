@@ -1,0 +1,1229 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Kevin Campos">
+      
+      
+      
+        <link rel="prev" href="../loadbalancer/">
+      
+      
+        <link rel="next" href="../about/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Nagios - Project Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nagios-monitoring-and-observability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Project Documentation" class="md-header__button md-logo" aria-label="Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Project Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Nagios
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Project Documentation" class="md-nav__button md-logo" aria-label="Project Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Project Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Services
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webserver/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web Servers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loadbalancer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Load Balancer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Nagios
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Nagios
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing Nagios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choosing Nagios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Nagios?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Nagios
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations-for-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations for Production
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-faced" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges Faced
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenges Faced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-time-using-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      First time using Nagios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-i-solved-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      How I Solved Them
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#articles-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Articles and Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lessons_learned/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lessons Learned
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing Nagios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choosing Nagios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why Nagios?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up Nagios
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations-for-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations for Production
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenges-faced" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges Faced
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Challenges Faced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-time-using-nagios" class="md-nav__link">
+    <span class="md-ellipsis">
+      First time using Nagios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-i-solved-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      How I Solved Them
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#articles-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Articles and Resources
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="nagios-monitoring-and-observability">Nagios: Monitoring and Observability</h1>
+<p>This section provides a Nagios-centric perspective, covering its setup, configuration, challenges, and lessons learned. It includes detailed explanations, configuration examples, and external resources that guided the implementation.</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<details class="info">
+<summary>What You'll Learn</summary>
+<p>By the end of this section, you will understand:</p>
+<ul>
+<li>Why Nagios was chosen for monitoring.</li>
+<li>The process of setting up and configuring Nagios.</li>
+<li>Key challenges faced during the implementation.</li>
+<li>Lessons learned and resources that guided the implementation.</li>
+</ul>
+</details>
+<p>Nagios plays a critical role in this project by providing monitoring and observability, ensuring system health and quick detection of potential issues to maintain uptime and reliability.</p>
+<hr />
+<h2 id="choosing-nagios">Choosing Nagios</h2>
+<h3 id="why-nagios">Why Nagios?</h3>
+<details class="tip">
+<summary>Key Benefits of Nagios</summary>
+<ul>
+<li><strong>Scalability:</strong> Easily integrates with large infrastructures.</li>
+<li><strong>Customizability:</strong> Allows tailored checks and plugins.</li>
+<li><strong>Reliability:</strong> Proven for monitoring critical systems over time.</li>
+<li><strong>Community-Driven:</strong> Strong support and vast resources available.</li>
+</ul>
+</details>
+<pre class="mermaid"><code>graph TD
+    A[Admin] --&gt; B(Nagios)
+    B --&gt; C[Web Servers]
+    B --&gt; D[LoadBalancer]</code></pre>
+<p>Due to the purpose of this project and the requirement of using Nagios. This was the only option to choose from. I had heard about Nagios but this was the first time deploying and configuring this monitoring solution.</p>
+<h3 id="setting-up-nagios">Setting Up Nagios</h3>
+<details class="success">
+<summary>Process Summary</summary>
+<ol>
+<li>Installing Nagios Core on a Linux-based system.</li>
+<li>Configuring nagios.cfg to define hosts, services, and alerting rules.</li>
+<li>Adding custom plugins for project-specific monitoring needs.</li>
+<li>Testing configurations and ensuring proper alerting mechanisms.<ul>
+<li>Due to the nature of the setup we are leveraging Docker Image and Volumes to add custom settings/configurations.</li>
+</ul>
+</li>
+</ol>
+<h2 id="getting-started">Getting Started</h2>
+<p>For a detailed step-by-step guide, refer to the <a href="../getting_started/">Getting Started</a> page.</p>
+</details>
+<p>Nagios Configuration</p>
+<p>This project uses the Nagios Docker image from <a href="https://github.com/JasonRivers/Docker-Nagios">Jason Rivers Repository</a></p>
+<ul>
+<li>Volumes are used to add custom configuration files, such as <code>webservers.cfg</code> and <code>haproxy.cfg</code>,
+to the Docker container. This allows for dynamic and flexible updates to the monitoring setup.</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nagios Configuration</label><label for="__tabbed_1_2">Commands</label><label for="__tabbed_1_3">HAProxy</label><label for="__tabbed_1_4">Web Servers</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">nagios.cfg</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a># Things Changed
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>cfg_file=/usr/local/nagios/etc/objects/commands.cfg
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>cfg_file=/opt/nagios/etc/objects/webservers.cfg
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>cfg_file=/opt/nagios/etc/objects/haproxy.cfg
+</span></code></pre></div></td></tr></table></div>
+<code>/usr/local/nagios/etc/objects/commands.cfg</code></p>
+<ul>
+<li><strong>What it does now</strong>: Specifies the location of the commands.cfg file, which contains definitions for custom check commands.</li>
+<li><strong>Production Changes</strong>: Ensure this file is regularly reviewed and version-controlled. Consider separating critical commands into distinct directories for modularity.</li>
+</ul>
+<p><code>/opt/nagios/etc/objects/webservers.cfg</code> and <code>/opt/nagios/etc/objects/haproxy.cfg</code></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Includes configuration files for web servers and the HAProxy load balancer.</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Use structured directories for organizing files (e.g., objects/web/ or objects/load_balancers/).</li>
+<li>Enforce naming conventions.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">commands.cfg</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a># &#39;check_webservers&#39; custom command definition
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>define command {
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>        command_name    check_webservers
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>        command_line    /opt/nagios/libexec/check_webservers.py
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>}
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>What it does now</strong>:</p>
+<ul>
+<li>Defines a custom command check_webservers, which executes the specified Python script <code>check_webservers.py</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Production Changes</strong>:</p>
+<ul>
+<li>Secure the script's execution with permissions and avoid hardcoding sensitive information.
+Use logging in <code>check_webservers.py</code> for audit and debugging.</li>
+<li>Consider migrating commands to a centralized directory under libexec/custom/ for better organization.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">haproxy.cfg</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="hll">define host {
+</span></span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>        use                     linux-server
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>        host_name               haproxy
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        alias                   HAProxy Load Balancer
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>        address                 haproxy
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>}
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="hll">define hostgroup {
+</span></span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>        hostgroup_name  haproxy-servers      ;
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>        alias           HAProxy Servers      ;
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>        members         haproxy      ;
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>}
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>define service {
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>        use                             local-service,graphed-service
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a>        host_name                       haproxy
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="hll">        service_description             PING
+</span></span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a>        check_command                   check_ping!100.0,20%!500.0,60%
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a>        check_interval                  1    ;
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a>        retry_interval                  0.5  ;
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a>        max_check_attempts              3    ;
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a>}
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a>define service {
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a>        use                             local-service,graphed-service
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a>        host_name                       haproxy
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="hll">        service_description             Current Load
+</span></span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a>        check_command                   check_local_load!5.0,4.0,3.0!10.0,6.0,4.0
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a>}
+</span></code></pre></div></td></tr></table></div>
+<code>define host</code></p>
+<ul>
+<li>
+<p><strong>What it does now</strong>:</p>
+<ul>
+<li>Defines the HAProxy host with a specific alias and hostname.</li>
+</ul>
+</li>
+<li>
+<p><strong>Production Changes</strong>:</p>
+<ul>
+<li>Use a fixed IP address or DNS entry for stability.</li>
+<li>Include contact groups to define alerting policies.</li>
+</ul>
+</li>
+</ul>
+<p><code>define hostgroup</code></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Groups all HAProxy servers for unified monitoring.</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Define multiple HAProxy instances if needed for redundancy.</li>
+<li>Add tagging for roles (e.g., primary, secondary).</li>
+</ul>
+</li>
+</ul>
+<p><code>define service</code></p>
+<p><strong>PING</strong></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Monitors HAProxy availability via ICMP ping.</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Add notification thresholds for escalation (e.g., email after 3 failures).</li>
+<li>Consider disabling ICMP in high-security environments and replacing with TCP-based checks.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Current Load</strong></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Checks HAProxy's CPU load against warning and critical thresholds.</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Adjust thresholds based on server capacity and observed trends.</li>
+<li>Use dynamic load metrics via plugins.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">webservers.cfg</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="hll">define host {
+</span></span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>        use                     linux-server
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>        host_name               web-a
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>        alias                   Flask Web Server A
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>        address                 web-a
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>}
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="hll">define host {
+</span></span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>        use                     linux-server
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>        host_name               web-b
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>        alias                   Flask Web Server B
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a>        address                 web-b
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a>}
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="hll">define hostgroup {
+</span></span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>        hostgroup_name  web-servers      ;
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a>        alias           Web Servers      ;
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a>        members         web-a,web-b      ;
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a>}
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18"></a>define service {
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19"></a>        use                             local-service,graphed-service
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20"></a>        host_name                       web-a,web-b
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21"></a>        service_description             PING
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22"></a>        check_command                   check_ping!100.0,20%!500.0,60%
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23"></a>        check_interval                  1    ;
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24"></a>        retry_interval                  0.5  ;
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25"></a>        max_check_attempts              3    ;
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26"></a>}
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27"></a>define service {
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28"></a>        use                             local-service,graphed-service
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29"></a>        host_name                       web-a,web-b
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="hll">        service_description             HTTP
+</span></span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31"></a>        check_command                   check_http
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32"></a>}
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33"></a>define service {
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34"></a>        use                             generic-service,graphed-service
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35"></a>        host_name                       localhost
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36"></a>        service_description             Web Server Status
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="hll">        check_command                   check_webservers!5
+</span></span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38"></a>        check_interval                  1    ;
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39"></a>        retry_interval                  0.5  ;
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40"></a>        max_check_attempts              2    ;
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41"></a>}
+</span></code></pre></div></td></tr></table></div>
+<code>define host</code></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Defines a host named <code>web-a</code> that uses the <code>linux-server</code> template.</li>
+<li>Assigns an alias "Flask Web Server A" for easier identification in logs and reports.</li>
+<li>Resolves <code>web-a</code> as the server address (hostname or IP).</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Ensure <code>web-a</code> is a resolvable DNS entry or static IP.</li>
+<li>Add metadata fields such as <code>location</code> or <code>contact</code> for operational clarity.</li>
+</ul>
+</li>
+</ul>
+<details class="hint">
+<summary>web-b explanation</summary>
+<ul>
+<li>Configuration is the same for web-b, the name is all that changes.</li>
+</ul>
+</details>
+<p><code>define hostgroup</code></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Groups <code>web-a</code> and <code>web-b</code> under the host group <code>web-servers</code>.</li>
+<li>Simplifies the application of common checks to both servers.</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Add documentation or labels to distinguish production and staging servers.</li>
+</ul>
+</li>
+</ul>
+<p><code>define service</code></p>
+<p><strong>PING</strong></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Monitors the availability of <code>web-a</code> and <code>web-b</code> using ICMP ping.</li>
+</ul>
+</li>
+</ul>
+<details class="info">
+<summary>PING Deep Dive</summary>
+<ul>
+<li>Arguments for <code>check_ping</code>:<ul>
+<li><code>100.0,20%</code>: Warning thresholds (latency in ms, packet loss percentage).</li>
+<li><code>500.0,60%</code>: Critical thresholds (latency in ms, packet loss percentage).</li>
+</ul>
+</li>
+<li>Intervals:<ul>
+<li><code>check_interval</code>: Runs every 1 minute.</li>
+<li><code>retry_interval</code>: Retries every 30 seconds on failure.</li>
+<li><code>max_check_attempts</code>: Alerts after 3 failed attempts.</li>
+</ul>
+</li>
+</ul>
+</details>
+<ul>
+<li><strong>Production Changes</strong>:<ul>
+<li>Replace ICMP with application-specific health checks for restricted environments.</li>
+<li>Adjust thresholds based on network performance trends.</li>
+</ul>
+</li>
+</ul>
+<p><strong>HTTP</strong></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Checks the availability of HTTP services on <code>web-a</code> and <code>web-b</code>.</li>
+<li><code>check_http</code>: Ensures the web server is responding with an expected HTTP status.</li>
+</ul>
+</li>
+<li><strong>Production Changes</strong>:<ul>
+<li>Add arguments to <code>check_http</code> for SSL validation or response time thresholds.</li>
+<li>Monitor additional URLs or endpoints.</li>
+</ul>
+</li>
+</ul>
+<p><strong>check_webservers</strong></p>
+<ul>
+<li><strong>What it does now</strong>:<ul>
+<li>Runs the custom <code>check_webservers</code> command to monitor web server health.</li>
+</ul>
+</li>
+</ul>
+<details class="info">
+<summary>check_webservers Deep Dive</summary>
+<ul>
+<li>Argument <code>!5</code>: Checks for up to 5 server connections or conditions.</li>
+<li>Intervals:<ul>
+<li><code>check_interval</code>: Checks every 1 minute.</li>
+<li><code>retry_interval</code>: Retries every 30 seconds on failure.</li>
+<li><code>max_check_attempts</code>: Alerts after 2 failed attempts.</li>
+</ul>
+</li>
+</ul>
+</details>
+<ul>
+<li><strong>Production Changes</strong>:<ul>
+<li>Improve the custom script to include more metrics, such as response time and error rates.</li>
+<li>Log results for analysis and troubleshooting.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<hr />
+<h3 id="recommendations-for-production">Recommendations for Production</h3>
+<details class="tip">
+<summary>Key Improvements for Production</summary>
+<ul>
+<li>Enable redundant monitoring for high availability.</li>
+<li>Integrate with modern alerting tools like PagerDuty or Slack.</li>
+<li>Use encryption for communication between Nagios server and monitored hosts.</li>
+</ul>
+</details>
+<hr />
+<h2 id="challenges-faced">Challenges Faced</h2>
+<details class="danger">
+<summary>Challenges Encountered</summary>
+<ul>
+<li>Configuration Complexity: Understanding and adapting nagios.cfg and plugins for project-specific needs.</li>
+<li>Alert Noise: Fine-tuning thresholds to reduce false positives.</li>
+<li>Scalability: Adjusting Nagios to efficiently handle growing infrastructure.</li>
+</ul>
+</details>
+<h3 id="first-time-using-nagios">First time using Nagios</h3>
+<p>This was very confusing at first, especially when just starting out. Thankfully, the documentation is good, and there are plenty of examples to use as a starting point.</p>
+<p>I chose the easier route by using a Docker image that includes many boilerplate configurations. While these configurations would need adjustments for production, it works quite well as a starting point.</p>
+<h3 id="how-i-solved-them">How I Solved Them</h3>
+<ul>
+<li>Configuration Complexity:<ul>
+<li>Consulted official Nagios documentation and community forums.</li>
+</ul>
+</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<details class="quote">
+<summary>Key Takeaways</summary>
+<ul>
+<li>Nagios’ plugin system provides unparalleled flexibility for custom monitoring.</li>
+<li>Reducing alert noise is essential for effective monitoring.</li>
+<li>Distributed monitoring is critical for scaling in large environments.</li>
+</ul>
+</details>
+<h2 id="articles-and-resources">Articles and Resources</h2>
+<p>Here are some resources I used to understand and configure HAProxy:</p>
+<ul>
+<li><a href="https://www.nagios.org/documentation/" target="_blank">Official Nagios Documentation</a></li>
+<li><a href="https://kifarunix.com/deploy-nagios-as-a-docker-container/" target="_blank">Deploy Nagios as Container</a></li>
+<li><a href="https://github.com/JasonRivers/Docker-Nagios">Docker-Nagios</a></li>
+<li><a href="https://assets.nagios.com/downloads/nagioscore/docs/nrpe/NRPE.pdf" target="_blank">NRPE Configuration Guide</a></li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Future Enhancements</p>
+<p><strong>Integration and Automation</strong></p>
+<ul>
+<li>Explore integration with Prometheus for metrics collection.</li>
+<li>Automate plugin deployment using Ansible.</li>
+</ul>
+<p><strong>Security and Monitoring</strong></p>
+<ul>
+<li>Implement SSL/TLS for secure communication.</li>
+<li>Evaluate advanced visualization tools like Grafana for better insights.</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
