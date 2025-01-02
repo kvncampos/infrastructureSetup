@@ -77,8 +77,25 @@ Opening the range `60000-65000` caused conflicts with Docker's networking stack,
     | Port Conflicts                    | Only mapped ports cause conflicts.         | All bound ports can conflict.
     | Use Case                          | Fine for small ranges (e.g., 10 ports).	 | Better for large ranges (e.g., 5000).
 
-    - This is an alternative to using 'iptables'.
-         - Using network_mode: host is an alternative to using iptables to handle networking. It simplifies the setup by achieving the same outcome as manually configured iptables rules but avoids the additional manual configuration steps.
+### Comparison: iptables vs. `network_mode: host`
+
+Using `network_mode: host` offers a simpler alternative to managing networking compared to `iptables`.
+
+#### **Key Differences**
+
+| Feature                   | `iptables`                                     | `network_mode: host`                          |
+|---------------------------|-----------------------------------------------|-----------------------------------------------|
+| **Complexity**            | Requires manual configuration of rules.       | Simplifies setup by avoiding manual rules.    |
+| **Flexibility**           | Highly customizable for advanced scenarios.   | Limited to exposing the container's network.  |
+| **Ease of Use**           | Steeper learning curve for configuration.     | Straightforward and easy to implement.        |
+| **Performance**           | Slight overhead for rule processing.          | Minimal overhead, direct host networking.     |
+
+#### **Summary**
+- `iptables` is ideal for advanced and highly granular networking scenarios where precise control is required.
+- `network_mode: host` is best suited for simpler setups where performance and ease of use are the primary concerns.
+- By using `network_mode: host`, you can achieve the same outcomes as basic `iptables` configurations without the added complexity of managing individual rules.
+
+
     ??? note "Things to Consider"
         - **Compatibility**: `network_mode: host` is supported only on Linux. It does not work on macOS or Windows.
         - **Port Conflicts**: Ensure that no other services on the host are using ports in the range `60000-60010` or any ports required by your application.
