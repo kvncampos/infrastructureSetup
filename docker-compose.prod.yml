@@ -5,6 +5,7 @@ services:
       context: ./infrastructure/load_balancer
       dockerfile: Dockerfile.prod
     container_name: haproxy
+    network_mode: host
     ports:
       - "60000-65000:60000-65000"  # Map port range for load balancer
     networks:
